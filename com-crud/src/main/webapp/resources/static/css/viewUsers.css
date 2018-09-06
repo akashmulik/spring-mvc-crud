@@ -1,0 +1,11 @@
+body {
+	background-color: #eaeaea;
+}
+
+table > thead > tr {
+	background-color: #adadad;
+}
+
+.modal-header {
+	background-color: #cecece;
+}
