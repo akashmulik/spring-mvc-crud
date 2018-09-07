@@ -129,9 +129,20 @@ public class MainController {
 	@GetMapping("logout")
 	public String logout(HttpServletRequest request) {
 		
+		if(request.getSession(false) != null) {
 		log.info(request.getSession(false).getAttribute("userID"));
 		request.getSession(false).removeAttribute("userID");
 		request.getSession(false).invalidate();
+		}
 		return "redirect:/login";
+	}
+	
+	///suspend or activate user
+	@PostMapping("toggleUserStatus")
+	public ResponseEntity<String> toggleUserStatus(UsersBean bean){
+		
+		if(service.toggleUserStatus(bean))
+			return ResponseEntity.ok("success");
+		return ResponseEntity.ok("error");
 	}
 }

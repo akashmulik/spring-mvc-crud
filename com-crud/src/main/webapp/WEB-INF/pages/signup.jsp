@@ -37,25 +37,24 @@
 					</div>
 					
 					<div class="form-group">
-						<f:input path="email" class="text email" type="email" placeholder="Email" required="true" />
+						<f:input path="email" class="text email" type="email" placeholder="Email" required="true"/>
 						<f:errors path="email" cssClass="error" />
 					</div>
 					
 					<div class="form-group">
-						<f:input path="pswd" class="text" type="password" placeholder="Password" 
-						required="true" />
+						<f:input path="pswd" class="text" type="password" placeholder="Password" required="true"/>
 						<f:errors path="pswd" cssClass="error" />
 					</div>
 					
 					<div class="form-group">
 						<f:input path="mobile" class="text" type="number" placeholder="Mobile"
-						required="true" accept="number" />
+						 required="true" accept="number" />
 						<f:errors path="mobile" cssClass="error" />
 					</div>
 					
 					<div class="form-group">
 						<f:input path="city" class="text" type="text" name="city" 
-						placeholder="City" required="true" />
+						required="true" placeholder="City" />
 						<f:errors path="city" cssClass="error" />
 					</div>
 

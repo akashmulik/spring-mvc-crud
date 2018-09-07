@@ -22,4 +22,6 @@ public interface UserDao {
 	public List<UsersBean> getAllUsers();
 
 	public boolean updateUser(UsersBean uBean);
+
+	public boolean toggleUserStatus(UsersBean bean);
 }

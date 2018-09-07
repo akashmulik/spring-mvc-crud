@@ -15,35 +15,39 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
-	
+
 	public boolean createOrUpdate(UsersBean uBean) {
-		
+
 		return userDao.createOrUpdate(uBean);
 	}
-	
-public boolean updateUser(UsersBean uBean) {
-		
+
+	public boolean updateUser(UsersBean uBean) {
+
 		return userDao.updateUser(uBean);
 	}
-	
-public boolean checkDuplicateEmail(String email) {
-		
+
+	public boolean checkDuplicateEmail(String email) {
+
 		return userDao.checkDuplicateEmail(email);
 	}
 
-public List<UsersBean> verifyLogin(LoginBean bean) {
-	
-	return userDao.verifyLogin(bean);
-}
+	public List<UsersBean> verifyLogin(LoginBean bean) {
 
-public List<UsersBean> getAllUsers() {
-	
-	return userDao.getAllUsers();
-}
+		return userDao.verifyLogin(bean);
+	}
 
-public boolean deleteUser(LoginBean bean) {
+	public List<UsersBean> getAllUsers() {
 
-	return userDao.deleteUser(bean);
-}
+		return userDao.getAllUsers();
+	}
+
+	public boolean deleteUser(LoginBean bean) {
+
+		return userDao.deleteUser(bean);
+	}
+
+	public boolean toggleUserStatus(UsersBean bean) {
+		return userDao.toggleUserStatus(bean);
+	}
 
 }

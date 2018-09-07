@@ -94,4 +94,23 @@ public boolean updateUser(UsersBean uBean) {
 		return query.list();
 	}
 
+	public boolean toggleUserStatus(UsersBean bean) {
+
+		try {
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("update UsersBean set activeFlag = ? where id = ?");
+			if ("Y".equals(bean.getActiveFlag())) {
+				query.setParameter(0, "N");
+			} else {
+				query.setParameter(0, "Y");
+			}
+			query.setParameter(1, bean.getId());
+			query.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

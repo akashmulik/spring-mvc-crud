@@ -24,8 +24,15 @@ var usersWrapper = (function() {
         			var result = [];
         			for(i=0; i<data.length; i++){
         				
+        				var statusString;
+        				if(data[i].activeFlag === "Y"){
+        					statusString = '<a href="#" onclick="usersWrapper.toggleUserStatus(' + i + ')" class="btn-warning">Suspend</a>';
+        				} else {
+        					statusString = '<a href="#" onclick="usersWrapper.toggleUserStatus(' + i + ')" class="btn-success">Activate</a>';
+        				}
+        				
         				var actionColumn = '<a href="#" onclick="usersWrapper.editUser(' + i + ')" class="btn-primary" data-toggle="modal" data-target="#userModal">Edit</a>&nbsp;\n\
-        					                <a href="#" onclick="usersWrapper.suspendUser(' + i + ')" class="btn-warning">Suspend</a>&nbsp;\n\
+        					                '+statusString+'&nbsp;\n\
         					                <a href="#" onclick="usersWrapper.deleteUser(' + i + ')" class="btn-danger">Delete</a>';
         				
         				result[i] = new Array(data[i].name, data[i].email, data[i].mobile, data[i].city,actionColumn);
@@ -40,10 +47,10 @@ var usersWrapper = (function() {
                         /*"order": [[1, "asc"]],*/
                         "aoColumns": [
                         	{"sTitle": "name", "sWidth": "10%"},
-                            {"sTitle": "Email", "sWidth": "15%"},
+                            {"sTitle": "Email", "sWidth": "13%"},
                             {"sTitle": "Mobile", "sWidth": "10%"},
                             {"sTitle": "city", "sWidth": "10%"},
-                            {"sTitle": "Actions", "sWidth": "10%"}
+                            {"sTitle": "Actions", "sWidth": "12%"}
                         ]
                     });
         		}
@@ -96,8 +103,26 @@ var usersWrapper = (function() {
 				}
 			});
 		},
-		suspendUser : function(index) {
-			alert('suspend');
+		toggleUserStatus : function (index) { //suspend or activate user
+			alertify.confirm("Are you sure?",
+					function() {
+						$.ajax({
+							type: 'POST',
+							url: 'toggleUserStatus',
+							data: {id:data[index].id, activeFlag:data[index].activeFlag},
+							success: function (data) {
+								if(data === 'success'){
+									usersWrapper.getAllUsers();
+									alertify.success("Updated user status");
+								} else {
+									alertify.error("Issue occured. try again.");
+								}
+							}
+						});
+					},
+					function() {
+						// on cancel logic
+					});
 		}
 	};
 })();

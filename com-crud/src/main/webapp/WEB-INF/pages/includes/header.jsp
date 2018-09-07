@@ -8,5 +8,6 @@
 <script src="resources/static/plugins/DataTables/datatables.min.js"></script>
 <link rel="stylesheet" href="resources/static/plugins/DataTables/datatables.min.css"/>
 <!-- alertify -->
+<link rel="stylesheet" href="resources/static/plugins/alertifyjs/css/alertify.css"/>
 <script src="resources/static/plugins/alertifyjs/alertify.min.js"></script>
-<link rel="stylesheet" href="resources/static/plugins/alertifyjs/css/alertify.min.css"/>
+

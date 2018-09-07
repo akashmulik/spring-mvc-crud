@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.hibernate.validator.constraints.Length;
 
 import com.crud.validators.NoDuplicateEmail;
 
@@ -34,18 +36,21 @@ public class UsersBean implements Serializable{
 
 	@Column(name="email")
 	@NoDuplicateEmail
+	@Email
 	private String email;
 	
 	@Column(name="password")
+	@Length(min=5, max=8)
 	private String pswd;
 	
 	@Column(name = "mobile_no")
+	@Length(min=10, max=12)
 	private String mobile;
 	
 	@Column(name="city")
+	@NotNull
 	private String city;
 	
-	@Value("Y")
 	@Column(name="active_flag")
 	private String activeFlag;
 	

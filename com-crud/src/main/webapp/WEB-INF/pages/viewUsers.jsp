@@ -22,7 +22,8 @@
 	<div class="container-fluid">
 		<br>
 		<h3>Users Details</h3>
-		<div class=" col-md-11">
+		<!-- users table -->
+		<div class=" col-md-10">
 			<table class="table table-responsive table-bordered stripe"
 				id="usersTable"></table>
 		</div>
