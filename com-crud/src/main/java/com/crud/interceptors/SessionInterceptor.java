@@ -31,7 +31,6 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 /*		log.info(request.getContextPath());
 		log.info(request.getRequestURI());*/
 		String url = request.getRequestURI().substring(request.getContextPath().length());
-		log.info(url);
 		
 		if(url.equals("/login") || url.equals("/logout") || url.equals("/signup") || url.contains("/resources")) {
 			return true;

@@ -40,8 +40,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<!-- destroy-method - to close data source pool..to avoid memory leak -->
 	 <bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName"
-			value="${driverClass}" />
+		<property name="driverClassName" value="${driverClass}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
@@ -58,9 +57,13 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 				<prop key="hibernate.default_schema">mvc</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
-				<prop key="format_sql">true</prop>
-				<prop key="use_sql_comments">true</prop>
  				<prop key="hibernate.hbm2ddl.auto">update</prop>
+ 				<!-- second level cache -->
+ 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+ 				<prop key="hibernate.cache.use_query_cache">true</prop>
+ 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+ 				<prop key="format_sql">true</prop>
+				<prop key="use_sql_comments">true</prop>
 			</props>
 		</property>
 	</bean>

@@ -82,6 +82,15 @@
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
+		
+    <!-- hibernate cache -->
+    
+		 <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-ehcache</artifactId>
+		    <version>4.1.0.Final</version>
+		</dependency>
     
     <!-- Hibernate validations -->
     
@@ -97,12 +106,17 @@
     <artifactId>hibernate-validator</artifactId>
     <version>6.0.12.Final</version>
 </dependency>
+
+	<!-- Jasper -->
+
     <!-- https://mvnrepository.com/artifact/org.apache.tomcat/jasper -->
 <dependency>
     <groupId>org.apache.tomcat</groupId>
     <artifactId>jasper</artifactId>
     <version>6.0.32</version>
 </dependency>
+
+<!-- jackson data -->
 
 <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 <dependency>

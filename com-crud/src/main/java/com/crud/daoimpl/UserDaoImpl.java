@@ -47,6 +47,7 @@ public boolean updateUser(UsersBean uBean) {
 		Query query = sessionFactory.getCurrentSession().createQuery("FROM UsersBean bean WHERE bean.email=:email and bean.pswd=:pswd");
 		query.setString("email", bean.getEmail());
 		query.setString("pswd", bean.getPswd());
+		query.setCacheable(true); //second level cache
 		return query.list();
 	}
 
@@ -91,6 +92,7 @@ public boolean updateUser(UsersBean uBean) {
 	public List<UsersBean> getAllUsers() {
 		
 		Query query = sessionFactory.getCurrentSession().createQuery("from UsersBean");
+		//query.setCacheable(true);
 		return query.list();
 	}
 
