@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,40 +25,39 @@
 <!-- //web font -->
 </head>
 <body>
+
+<!-- error and success messages -->
+	<c:if test="${param.error != null}">
+		<div class="alert alert-danger">
+			<p>Invalid credentials.</p>
+		</div>
+	</c:if>
+	<c:if test="${param.logout != null}">
+		<div class="alert alert-success">
+			<p>You have been logged out successfully.</p>
+		</div>
+	</c:if>
+	
 	<!-- main -->
 	<div class="main-w3layouts wrapper">
 		<h1>Login</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
 			
-				<f:form action="login" modelAttribute="loginBean">
-				
-				<f:errors cssClass="error" />
-				<%
-				if("expired".equals(response.getHeader("session-info"))){
-					out.print("Session expired.");
-				}
-				if("invalid".equals(response.getHeader("session-info"))){
-					out.print("Please Login first");
-				}
-				if("success".equals(response.getHeader("sign-up"))){
-					out.print("Signup successful");
-				}
-				%>
-				
+				<form action="login" method="POST">
+
 					<div class="form-group">
-						<f:input path="email" class="text email" type="email" placeholder="Email" required="true"/>
+						<input name="email" class="text email" type="email" placeholder="Email" required="true"/>
 					</div>
-					
 					<div class="form-group">
-						<f:input path="pswd" class="text" type="password" placeholder="Password" 
+						<input name="pswd" class="text" type="password" placeholder="Password" 
 						required="true" />
 					</div>
+					<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 					<input type="submit" value="LOGIN">
-					
-				</f:form>
+				</form>
 				<p>
-					Don't Have Account? <a href="signup" class="btn btn-primary btn-sm">Sign Up</a>
+					Don't have account? <a href="signup" class="btn btn-primary btn-sm">Sign Up</a>
 				</p>
 			</div>
 		</div>
@@ -75,10 +75,10 @@
 			<li></li>
 			<li></li>
 			<li></li>
+<!-- 			<li></li>
 			<li></li>
 			<li></li>
-			<li></li>
-			<li></li>
+			<li></li> -->
 			<li></li>
 			<li></li>
 		</ul>

@@ -16,7 +16,7 @@ var usersWrapper = (function() {
         getAllUsers: function () {
         	$.ajax({
         		type : 'GET',
-        		url : "viewUsers",
+        		url : "getAllUsers",
         		data : '',
         		success : function(response) {
 

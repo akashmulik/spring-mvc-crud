@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Signup</title>
+<title>All Users</title>
 <%@include file="includes/header.jsp"%>
 <%@include file="includes/navbar.jsp"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">

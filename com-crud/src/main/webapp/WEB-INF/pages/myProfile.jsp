@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home</title>
+<title>Profile</title>
 <%@include file="includes/header.jsp"%>
 <%@include file="includes/navbar.jsp"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,7 @@
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	%>
 	<div class="container-fluid">
-		<h1>Home Page</h1>
+		<h1>Profile Page</h1>
 	</div>
 </body>
 </html>

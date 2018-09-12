@@ -9,10 +9,11 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="#">Home
+			<li class="nav-item active"><a class="nav-link" href="homePage">Home
 					<span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<li class="nav-item"><a class="nav-link" href="viewUsers">View Users</a></li>
+			<li class="nav-item"><a class="nav-link" href="myProfile">Profile</a></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -23,17 +24,27 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#">Something else here</a>
 				</div></li>
-			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
-			</li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search"
 				placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
-		<a href="logout" style="margin-left: 10px;" 
+		<c:url value="/logout" var="logoutUrl" />
+		<form id="logout" action="${logoutUrl}" method="post">
+		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		  <button type="submit" style="margin-left: 10px;" class="btn btn-sm btn-outline-danger"
+		  data-toggle="tooltip" title="Logout">Logout</button>
+		</form>
+<!-- 		<a href="logout" style="margin-left: 10px;" 
 			class="btn btn-sm btn-outline-danger" data-toggle="tooltip" title="Logout"> 
 			<span class="glyphicon glyphicon-log-out"></span>Logout
-		</a>
+		</a> -->
 	</div>
 </nav>
+
+<style>
+nav {
+	box-shadow : 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	}
+</style>

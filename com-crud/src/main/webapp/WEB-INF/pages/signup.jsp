@@ -61,7 +61,7 @@
 					<input type="submit" value="SIGNUP">
 				</f:form>
 				<p>
-				 	Already Have Account? <a href="login" class="btn btn-primary btn-sm">Login</a>
+				 	Already have account? <a href="login" class="btn btn-primary btn-sm">Login</a>
 				</p>
 			</div>
 		</div>

@@ -77,11 +77,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	</bean>
 	
 	<!-- Configuring interceptors based on URI -->
-  	<mvc:interceptors>
+<!--   	<mvc:interceptors>
  	<mvc:interceptor>
  	<mvc:mapping path="/**"/>
 		<bean class="com.crud.interceptors.SessionInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 
 </beans>

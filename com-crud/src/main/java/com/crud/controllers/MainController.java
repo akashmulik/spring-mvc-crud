@@ -25,6 +25,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,7 +42,7 @@ public class MainController {
 	@Autowired
 	private UserService service;
 	
-	/////Sign up
+	//Sign up
 	@GetMapping("/signup")
 	public ModelAndView viewSignup(Model model){
 		model.addAttribute(new UsersBean());
@@ -62,14 +63,49 @@ public class MainController {
 		return "signup";
 	}
 	
-	////Login
-	@GetMapping("/login")
-	public String ViewLogin(Model model) {
-		model.addAttribute(new LoginBean());
-		return "login";
+	//Login
+	@GetMapping(value = "/login")
+	public ModelAndView viewLoginPage(@RequestParam(value = "error",required = false) String error,
+	@RequestParam(value = "logout",	required = false) String logout) {
+		
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Invalid credentials provided.");
+		}
+
+		if (logout != null) {
+			model.addObject("message", "Logged out successfully.");
+		}
+
+		model.setViewName("login");
+		return model;
 	}
 	
-	@PostMapping("/login")
+	//home page
+	@GetMapping("/homePage")
+	public ModelAndView homePage() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("homePage");
+		return model;
+	}
+	
+	//profile page
+	@GetMapping("/myProfile")
+	public ModelAndView myProfile() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("myProfile");
+		return model;
+	}
+	
+	//Access denied page
+	@GetMapping("/accessDenied")
+	public ModelAndView accessDenied() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("accessDenied");
+		return model;
+	}
+	
+/*	@PostMapping("/login")
 	public String verifyLogin(@Validated LoginBean bean, BindingResult result, HttpServletRequest request) {
 		
 		List<UsersBean> list = service.verifyLogin(bean);
@@ -91,11 +127,15 @@ public class MainController {
 		ObjectError error = new ObjectError("status", "Wrong combinition of email and password, try again or signup");
 		result.addError(error);
 		return "login";
+	}*/
+	
+	//View users
+	@GetMapping("/viewUsers")
+	public ModelAndView getViewUsersPage() {
+		return new ModelAndView("viewUsers");
 	}
 	
-	///View users
-	
-	@GetMapping("/viewUsers")
+	@GetMapping("/getAllUsers")
 	public @ResponseBody Map<String, Object> getAllUsers() {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -137,7 +177,7 @@ public class MainController {
 		return "redirect:/login";
 	}
 	
-	///suspend or activate user
+	//suspend or activate user
 	@PostMapping("toggleUserStatus")
 	public ResponseEntity<String> toggleUserStatus(UsersBean bean){
 		

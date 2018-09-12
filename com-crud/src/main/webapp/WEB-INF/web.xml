@@ -27,9 +27,10 @@
 		<param-value>/WEB-INF/spring-servlet.xml</param-value>
 	</context-param>
 
-  	<listener>
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+<!--   	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> -->
 
  	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
