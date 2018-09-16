@@ -37,6 +37,11 @@
 			<p>You have been logged out successfully.</p>
 		</div>
 	</c:if>
+	<c:if test="${param.signup != null}">
+		<div class="alert alert-success">
+			<p>Signed up successfully. Please login to proceed.</p>
+		</div>
+	</c:if>
 	
 	<!-- main -->
 	<div class="main-w3layouts wrapper">

@@ -1,6 +1,10 @@
 package com.crud.daoimpl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,8 @@ public class UserDaoImpl implements UserDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private static final Log log = LogFactory.getLog(UserDaoImpl.class);
 	
 	public boolean createOrUpdate(UsersBean uBean) {
 		
@@ -52,11 +58,6 @@ public boolean updateUser(UsersBean uBean) {
 	}
 
 	public UsersBean getUser(UsersBean uBean) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<UsersBean> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -100,11 +101,11 @@ public boolean updateUser(UsersBean uBean) {
 
 		try {
 			Query query = sessionFactory.getCurrentSession()
-					.createQuery("update UsersBean set activeFlag = ? where id = ?");
-			if ("Y".equals(bean.getActiveFlag())) {
-				query.setParameter(0, "N");
+					.createQuery("update UsersBean set status = ? where id = ?");
+			if (false == bean.getActiveFlag()) {
+				query.setInteger(0, 0);
 			} else {
-				query.setParameter(0, "Y");
+				query.setInteger(0, 1);
 			}
 			query.setParameter(1, bean.getId());
 			query.executeUpdate();
@@ -113,6 +114,19 @@ public boolean updateUser(UsersBean uBean) {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public UsersBean getUserByEmail(String email) {
+		log.info("in dao");
+		List<UsersBean> list = new ArrayList<UsersBean>();
+		list = sessionFactory.getCurrentSession().createQuery("from users where email=?")
+				.setParameter(0, email).list();
+		
+		if(list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

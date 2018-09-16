@@ -20,5 +20,5 @@ public interface UserService {
 	public boolean deleteUser(LoginBean bean);
 
 	public boolean toggleUserStatus(UsersBean bean);
-
+	
 }

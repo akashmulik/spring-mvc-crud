@@ -17,8 +17,8 @@
     <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>3.0-alpha-1</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
@@ -82,6 +82,15 @@
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
+		
+    <!-- hibernate cache -->
+    
+		 <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-ehcache</artifactId>
+		    <version>4.1.0.Final</version>
+		</dependency>
     
     <!-- Hibernate validations -->
     
@@ -97,12 +106,17 @@
     <artifactId>hibernate-validator</artifactId>
     <version>6.0.12.Final</version>
 </dependency>
+
+	<!-- Jasper -->
+
     <!-- https://mvnrepository.com/artifact/org.apache.tomcat/jasper -->
 <dependency>
     <groupId>org.apache.tomcat</groupId>
     <artifactId>jasper</artifactId>
     <version>6.0.32</version>
 </dependency>
+
+<!-- jackson data -->
 
 <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 <dependency>
@@ -115,6 +129,37 @@
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.9.5</version>
+</dependency>
+
+<!-- spring security -->
+
+<!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jsp-api</artifactId>
+    <version>2.0</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>4.0.1.RELEASE</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>4.0.1.RELEASE</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>3.2.5.RELEASE</version>
 </dependency>
 
   </dependencies>

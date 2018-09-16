@@ -5,20 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Signup</title>
+<title>All Users</title>
 <%@include file="includes/header.jsp"%>
+<%@include file="includes/navbar.jsp"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- JS and CSS ref -->
-<link rel="stylesheet" href="<c:url value="/resources/static/css/viewUsers.css"/>"/>
-<script src="<c:url value="/resources/static/js/viewUsers.js"/>"></script>
+<link rel="stylesheet" href="resources/static/css/viewUsers.css"/>
+<script src="resources/static/js/viewUsers.js"></script>
 
 </head>
 <body>
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	%>
 	<div class="container-fluid">
 		<br>
-		<h3>Users List</h3>
-		<div class=" col-md-11">
+		<h3>Users Details</h3>
+		<!-- users table -->
+		<div class=" col-md-10">
 			<table class="table table-responsive table-bordered stripe"
 				id="usersTable"></table>
 		</div>
@@ -31,8 +36,8 @@
       <div class="modal-content">
       <form action="signup" method="post">
         <div class="modal-header">
+        <h4 class="modal-title">Edit user info</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
 
@@ -41,11 +46,11 @@
 					</div>
 					
 					<div class="form-group">
-						<input name="name" class="text form-control" type="text" placeholder="Name" required="true" id="name"/>
+						<input name="name" class="text form-control" type="text" placeholder="Name" required id="name"/>
 					</div>
 					
 					<div class="form-group">
-						<input name="email" class="text email form-control" type="email" placeholder="Email" required="true" id="email"/>
+						<input name="email" class="text email form-control" type="email" placeholder="Email" required id="email"/>
 					</div>
 					
 <%-- 					<div class="form-group">
@@ -56,16 +61,16 @@
 					
 					<div class="form-group">
 						<input name="mobile" class="text form-control" type="number" placeholder="Mobile"
-						required="true" accept="number" id="mobile"/>
+						required accept="number" id="mobile"/>
 					</div>
 					
 					<div class="form-group">
 						<input name="city" class="text form-control" type="text" name="city" 
-						placeholder="City" required="true" id="city"/>
+						placeholder="City" required id="city"/>
 					</div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" onclick="usersWrapper.updateUser()">Update</button>
+          <button type="submit" class="btn btn-success" onclick="usersWrapper.updateUser()">Update</button>
         </div>
         </form>
       </div>

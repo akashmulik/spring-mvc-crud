@@ -76,6 +76,25 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
+	<!-- java mail sender -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <!-- SMTP settings -->
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="akashmulik39@gmail.com" />
+	    <property name="password" value="akash$javacoder" />
+	 
+	    <property name="javaMailProperties">
+	        <!-- additional properties specific to JavaMail -->
+	        <props>
+	            <prop key="mail.transport.protocol">smtp</prop>
+	            <prop key="mail.smtp.auth">true</prop>
+	            <prop key="mail.smtp.starttls.enable">true</prop>
+	            <prop key="mail.debug">true</prop>
+	        </props>
+	    </property>
+	</bean>
+	
 	<!-- Configuring interceptors based on URI -->
 <!--   	<mvc:interceptors>
  	<mvc:interceptor>

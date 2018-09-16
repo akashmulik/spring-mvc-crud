@@ -10,13 +10,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<script src="<c:url value="/resources/static/plugins/jquery/jquery-3.3.1.js"/>"></script>
-<script src="<c:url value="/resources/static/plugins/jquery/jquery.validate.min.js"/>"></script>
-<script type="application/x-javascript" src="<c:url value="/resources/static/js/signup.js"/>">
+<script src="resources/static/plugins/jquery/jquery-3.3.1.js"></script>
+<script src="resources/static/plugins/jquery/jquery.validate.min.js"></script>
+<script type="application/x-javascript" src="resources/static/js/signup.js">
 </script>
 <!-- Custom Theme files -->
-<link rel="stylesheet"
-	href="<c:url value="/resources/static/css/signup.css"/>"/>
+<link rel="stylesheet" href="resources/static/css/signup.css"/>
 <!-- //Custom Theme files -->
 <!-- web font -->
 <link
@@ -38,32 +37,31 @@
 					</div>
 					
 					<div class="form-group">
-						<f:input path="email" class="text email" type="email" placeholder="Email" required="true" />
+						<f:input path="email" class="text email" type="email" placeholder="Email" required="true"/>
 						<f:errors path="email" cssClass="error" />
 					</div>
 					
 					<div class="form-group">
-						<f:input path="pswd" class="text" type="password" placeholder="Password" 
-						required="true" />
+						<f:input path="pswd" class="text" type="password" placeholder="Password" required="true"/>
 						<f:errors path="pswd" cssClass="error" />
 					</div>
 					
 					<div class="form-group">
 						<f:input path="mobile" class="text" type="number" placeholder="Mobile"
-						required="true" accept="number" />
+						 required="true" accept="number" />
 						<f:errors path="mobile" cssClass="error" />
 					</div>
 					
 					<div class="form-group">
 						<f:input path="city" class="text" type="text" name="city" 
-						placeholder="City" required="true" />
+						required="true" placeholder="City" />
 						<f:errors path="city" cssClass="error" />
 					</div>
 
 					<input type="submit" value="SIGNUP">
 				</f:form>
 				<p>
-				 	Already Have Account? <a href="login" class="btn btn-primary btn-sm">Login</a>
+				 	Already have account? <a href="login" class="btn btn-primary btn-sm">Login</a>
 				</p>
 			</div>
 		</div>

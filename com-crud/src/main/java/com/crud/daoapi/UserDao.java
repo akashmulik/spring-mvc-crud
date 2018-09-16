@@ -11,8 +11,6 @@ public interface UserDao {
 
 	public UsersBean getUser(UsersBean uBean);
 
-	public List<UsersBean> list();
-
 	public boolean deleteUser(LoginBean bean);
 
 	public boolean checkDuplicateEmail(String email);
@@ -24,4 +22,6 @@ public interface UserDao {
 	public boolean updateUser(UsersBean uBean);
 
 	public boolean toggleUserStatus(UsersBean bean);
+	
+	public UsersBean getUserByEmail(String email);
 }

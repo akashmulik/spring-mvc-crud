@@ -1,25 +1,26 @@
 package com.crud.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	//@Autowired
-//	DataSource dataSource;
+//	@Autowired
+//	UserDetailsService userDetailsService;
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
-		
+		//auth.userDetailsService(userDetailsService);
 		auth.inMemoryAuthentication().withUser("akashmulik39@gmail.com").password("akash123").authorities("ROLE_ADMIN", "ROLE_USER");
 		auth.inMemoryAuthentication().withUser("girish@gmail.com").password("girish123").roles("USER");
-		
 	}
 	
 	@Override

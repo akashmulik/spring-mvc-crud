@@ -23,19 +23,14 @@ var usersWrapper = (function() {
         			data = response.data;
         			var result = [];
         			for(i=0; i<data.length; i++){
-        				
-        				var statusString;
-        				if(data[i].activeFlag === "Y"){
-        					statusString = '<a href="#" onclick="usersWrapper.toggleUserStatus(' + i + ')" class="btn-warning">Suspend</a>';
+        				var radioColumn = '<input type="radio" name="selection" value="'+ i +'">';
+        				var status;
+        				if(data[i].activeFlag == false){
+        					status = 'Active';
         				} else {
-        					statusString = '<a href="#" onclick="usersWrapper.toggleUserStatus(' + i + ')" class="btn-success">Activate</a>';
+        					status = 'Suspended';
         				}
-        				
-        				var actionColumn = '<a href="#" onclick="usersWrapper.editUser(' + i + ')" class="btn-primary" data-toggle="modal" data-target="#userModal">Edit</a>&nbsp;\n\
-        					                '+statusString+'&nbsp;\n\
-        					                <a href="#" onclick="usersWrapper.deleteUser(' + i + ')" class="btn-danger">Delete</a>';
-        				
-        				result[i] = new Array(data[i].name, data[i].email, data[i].mobile, data[i].city,actionColumn);
+        				result[i] = new Array(radioColumn, data[i].name, data[i].email, data[i].mobile, data[i].city, status);
         			}
         			
         			$('#usersTable').dataTable({
@@ -46,23 +41,26 @@ var usersWrapper = (function() {
                         "scrollCollapse": true,
                         /*"order": [[1, "asc"]],*/
                         "aoColumns": [
-                        	{"sTitle": "name", "sWidth": "10%"},
+                        	{"sTitle": "Select", "sWidth": "2%"},
+                        	{"sTitle": "Name", "sWidth": "10%"},
                             {"sTitle": "Email", "sWidth": "13%"},
                             {"sTitle": "Mobile", "sWidth": "10%"},
-                            {"sTitle": "city", "sWidth": "10%"},
-                            {"sTitle": "Actions", "sWidth": "12%"}
+                            {"sTitle": "City", "sWidth": "10%"},
+                            {"sTitle": "Status", "sWidth": "10%"}
                         ]
                     });
         		}
         	});
         },
-		deleteUser : function(index) {
+		deleteUser : function() {
+			var index = $('input[name=selection]:checked').val();
+			if(index != undefined) {
 			alertify.confirm("Deleting " + data[index].name + ". Are you sure?",
 					function() {
 						$.ajax({
 							type : 'post',
 							url : 'deleteUser',
-							data : {email : data[index].email},
+							data : {email : data[index].email, _csrf : $('#csrf').val()},
 							success : function(data, textStatus, request) {
 								usersWrapper.getAllUsers();
 								if (data === 'deleted') {
@@ -76,14 +74,22 @@ var usersWrapper = (function() {
 					function() {
 						// on cancel logic
 					});
+			} else {
+				alertify.warning('Please select a record');
+			}
 		},
-		editUser : function(index) {
+		editUser : function() {
+			var index = $('input[name=selection]:checked').val();
+			if(index != undefined) {
 			$('#userModal').modal('show');
 			$('#id').val(data[index].id);
 			$('#name').val(data[index].name);
 			$('#email').val(data[index].email);
 			$('#mobile').val(data[index].mobile);
 			$('#city').val(data[index].city);
+			} else {
+				alertify.warning('Please select a record');
+			}
 		},
 		updateUser: function() {
 			event.preventDefault();
@@ -91,7 +97,7 @@ var usersWrapper = (function() {
 				type: 'POST',
 				url: 'updateUser',
 				data: {id:$('#id').val(),name :$('#name').val(), email:$('#email').val(),
-					mobile:$('#mobile').val(),city:$('#city').val()},
+					mobile:$('#mobile').val(),city:$('#city').val(), _csrf : $('#csrf').val()},
 				success: function(data) {
 						if(data == 'updated'){
 							usersWrapper.getAllUsers();
@@ -103,13 +109,15 @@ var usersWrapper = (function() {
 				}
 			});
 		},
-		toggleUserStatus : function (index) { //suspend or activate user
+		toggleUserStatus : function () { //suspend or activate user
+			var index = $('input[name=selection]:checked').val();
+			if(index != undefined) {
 			alertify.confirm("Are you sure?",
 					function() {
 						$.ajax({
 							type: 'POST',
 							url: 'toggleUserStatus',
-							data: {id:data[index].id, activeFlag:data[index].activeFlag},
+							data: {id : data[index].id, activeFlag : data[index].activeFlag, _csrf : $('#csrf').val()},
 							success: function (data) {
 								if(data === 'success'){
 									usersWrapper.getAllUsers();
@@ -123,6 +131,9 @@ var usersWrapper = (function() {
 					function() {
 						// on cancel logic
 					});
+			} else {
+				alertify.warning('Please select a record');
+			}
 		}
 	};
 })();

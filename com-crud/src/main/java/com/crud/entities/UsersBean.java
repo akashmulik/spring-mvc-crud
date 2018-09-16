@@ -1,14 +1,19 @@
 package com.crud.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -39,12 +44,12 @@ public class UsersBean implements Serializable{
 	@Column(name="name")
 	private String name;
 
-	@Column(name="email")
+	@Column(name="email", unique=true, nullable=false)
 	@NoDuplicateEmail
 	@Email
 	private String email;
 	
-	@Column(name="password")
+	@Column(name="password", nullable=false)
 	@Length(min=5, max=8)
 	private String pswd;
 	
@@ -56,9 +61,20 @@ public class UsersBean implements Serializable{
 	@NotNull
 	private String city;
 	
-	@Column(name="active_flag")
-	private String activeFlag;
+	@Column(name="status")
+	@Transient
+	private boolean activeFlag;
 	
+	@Transient
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="user")
+	private Set<UserRole> userProfiles;
+	
+	public Set<UserRole> getUserProfiles() {
+		return userProfiles;
+	}
+	public void setUserProfiles(Set<UserRole> userProfiles) {
+		this.userProfiles = userProfiles;
+	}
 	public int getId() {
 		return id;
 	}
@@ -95,10 +111,10 @@ public class UsersBean implements Serializable{
 	public void setPswd(String pswd) {
 		this.pswd = pswd;
 	}
-	public String getActiveFlag() {
+	public boolean getActiveFlag() {
 		return activeFlag;
 	}
-	public void setActiveFlag(String activeFlag) {
+	public void setActiveFlag(Boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
 

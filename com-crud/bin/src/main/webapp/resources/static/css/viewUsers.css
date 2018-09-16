@@ -5,3 +5,7 @@ body {
 table > thead > tr {
 	background-color: #adadad;
 }
+
+.modal-header {
+	background-color: #cecece;
+}

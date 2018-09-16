@@ -3,11 +3,13 @@ package com.crud.configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @EnableWebMvc
 @Configuration
+//@Import(SecurityConfig.class)
 public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	private static final Log log = LogFactory.getLog(WebConfig.class);

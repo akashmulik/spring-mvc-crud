@@ -9,3 +9,12 @@ table > thead > tr {
 .modal-header {
 	background-color: #cecece;
 }
+
+#buttons-parent {
+	float: none;
+	margin: 0 auto;
+}
+
+#buttons-parent > button {
+	margin-right: 10;
+}

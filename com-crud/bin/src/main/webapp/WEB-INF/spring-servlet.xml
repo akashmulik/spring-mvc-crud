@@ -14,10 +14,11 @@ http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 <mvc:resources mapping="/resources/**" location="/resources/"/>
+
 	<!-- Enable auto wire -->
 	<context:annotation-config />
-	<context:component-scan
-		base-package="com.crud" />
+	
+	<context:component-scan base-package="com.crud" />
 
 	<mvc:annotation-driven />
 
@@ -27,14 +28,22 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:db.properties</value>
+			</list>
+		</property>
+	</bean>
+
 	<!-- destroy-method - to close data source pool..to avoid memory leak -->
 	 <bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/mvc" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="driverClassName" value="${driverClass}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
 	</bean>
 
 	<!-- Session Factory declaration -->
@@ -48,9 +57,13 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 				<prop key="hibernate.default_schema">mvc</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
-				<prop key="format_sql">true</prop>
-				<prop key="use_sql_comments">true</prop>
  				<prop key="hibernate.hbm2ddl.auto">update</prop>
+ 				<!-- second level cache -->
+ 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+ 				<prop key="hibernate.cache.use_query_cache">true</prop>
+ 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+ 				<prop key="format_sql">true</prop>
+				<prop key="use_sql_comments">true</prop>
 			</props>
 		</property>
 	</bean>
@@ -64,8 +77,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	</bean>
 	
 	<!-- Configuring interceptors based on URI -->
-<!-- 	<mvc:interceptors>
+<!--   	<mvc:interceptors>
+ 	<mvc:interceptor>
+ 	<mvc:mapping path="/**"/>
 		<bean class="com.crud.interceptors.SessionInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors> -->
 
 </beans>

@@ -55,9 +55,9 @@ public class MainController {
 		if (result.hasErrors())
 			return "signup";
 
-		bean.setActiveFlag("Y");
+		bean.setActiveFlag(true);
 		if (service.createOrUpdate(bean)) {
-			return "redirect:/login";
+			return "redirect:/login?signup";
 		}
 
 		return "signup";
@@ -66,16 +66,15 @@ public class MainController {
 	//Login
 	@GetMapping(value = "/login")
 	public ModelAndView viewLoginPage(@RequestParam(value = "error",required = false) String error,
-	@RequestParam(value = "logout",	required = false) String logout) {
+	@RequestParam(value = "logout",	required = false) String logout,
+	@RequestParam(value = "signup",	required = false) String signup) {
 		
 		ModelAndView model = new ModelAndView();
-		if (error != null) {
+		if (error != null)
 			model.addObject("error", "Invalid credentials provided.");
-		}
 
-		if (logout != null) {
+		if (logout != null)
 			model.addObject("message", "Logged out successfully.");
-		}
 
 		model.setViewName("login");
 		return model;
@@ -129,7 +128,7 @@ public class MainController {
 		return "login";
 	}*/
 	
-	//View users
+	//View users page
 	@GetMapping("/viewUsers")
 	public ModelAndView getViewUsersPage() {
 		return new ModelAndView("viewUsers");

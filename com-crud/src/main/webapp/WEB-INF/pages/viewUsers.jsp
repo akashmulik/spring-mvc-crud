@@ -16,6 +16,7 @@
 
 </head>
 <body>
+<input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<%
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	%>
@@ -27,6 +28,13 @@
 			<table class="table table-responsive table-bordered stripe"
 				id="usersTable"></table>
 		</div>
+		<div class="row col-md-10">
+			<div id="buttons-parent">
+				<button type="button" class="btn btn-primary btn-md" onclick="usersWrapper.editUser()">Edit</button>
+				<button type="button" class="btn btn-warning btn-md" onclick="usersWrapper.toggleUserStatus()">Suspend/Activate</button>
+				<button type="button" class="btn btn-danger btn-md" onclick="usersWrapper.deleteUser()">Delete</button>
+			</div>
+		</div><br><br><br><br><br><br>
 		
 		<!-- Modal -->
   <div class="modal fade" id="userModal" role="dialog">
